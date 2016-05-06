@@ -77,9 +77,9 @@
         pair<int, int> move = pair<int, int>(0, 0);
         move = getMove(mineMap);
         
-        SendMessage(windowHandle, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(20+(16*move.first),70+(16*move.second)));
+        SendMessage(windowHandle, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(20+(16*move.first),70+(16*move.second))); //click the board
         SendMessage(windowHandle, WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(20+(16*move.first),70+(16*move.second)));
-        Sleep(30);
+        Sleep(30);// For effect only, can comment out.
     }
     if(didWin(pi.hProcess)){
         cout << "Good Job bot! :--D" << endl;
@@ -144,7 +144,7 @@ vector<vector<char> > tableParse(string parser){
 }
 
 /*
-*
+* Checks if the bot has won or lost
 *
 */
 bool stillPlaying(HANDLE handle){
@@ -159,6 +159,10 @@ bool stillPlaying(HANDLE handle){
     }
 }
 
+/*
+*Checks if bot won
+*
+*/
 bool didWin(HANDLE handle){
     int buffer = 0;
     ReadProcessMemory(handle, (PVOID)GAME_STATE_ADDRESS, &buffer, sizeof(buffer), 0);
@@ -170,6 +174,9 @@ bool didWin(HANDLE handle){
     }
 }
 
+/*
+* Returns string version of board state
+*/
 string printBoard(vector<vector<char> > b){
     string finalstr = "";
     for(int i = 0; i < b.size(); i++){
@@ -264,7 +271,7 @@ pair<int, int> getMove(vector<vector<char> > boardMain){
              }
          }
     }
-    int randomInt = rand()%coords.size();
+    int randomInt = rand()%coords.size();//picks random move of possible moves
     pair<int, int> move = pair<int, int>((coords[randomInt].first), (coords[randomInt].second));
     myfile.close();
     return move;   
