@@ -38,7 +38,8 @@
     si.cb = sizeof(si);
     ZeroMemory( &pi, sizeof(pi) );
   
-    char pathToProgram[] = "C:\\Users\\olivp\\Documents\\My Games\\Winmine__XP.exe";
+    char pathToProgram[] = "C:\\Users\\Graham\\Documents\\My Games\\Winmine__XP.exe";
+    //IMPORTANT
     //change this to the path to your minesweeper executable.
 
     if( !CreateProcessA( NULL,
